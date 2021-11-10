@@ -1,15 +1,10 @@
 'use strict'
 module.exports = {
   up: async (queryInterface, Sequelize) => {
-    await queryInterface.createTable('Todo', {
-      id: {
-        allowNull: false,
-        autoIncrement: true,
-        primaryKey: true,
-        type: Sequelize.INTEGER,
-      },
+    await queryInterface.createTable('Todo', {      
       uuid: {
         type: Sequelize.UUID,
+        primaryKey: true,
         defaultValue: Sequelize.DataTypes.UUIDV4,
         allowNull: false
       },
