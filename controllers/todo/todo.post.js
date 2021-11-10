@@ -4,11 +4,6 @@ const { v4: uuidv4 } = require('uuid')
 const db = require('../../models/index')
 
 
-const getTime = () => {
-  const currentDate = new Date()
-  return currentDate.toISOString()
-}
-
 module.exports.postTodo = async (req, res, next) => {
   try {
     const todo = await db.Todo.create({ name: "2" })
