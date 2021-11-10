@@ -1,0 +1,23 @@
+{
+  "development": {
+    "username": "client",
+    "password": "qwerty",
+    "database": "todos",
+    "host": "localhost",
+    "dialect": "postgres"
+  },
+  "test": {
+    "username": "client",
+    "password": "qwerty",
+    "database": "todos",
+    "host": "127.0.0.1",
+    "dialect": "postgres"
+  },
+  "production": {
+    "username": "client",
+    "password": "qwerty",
+    "database": "todos",
+    "host": "127.0.0.1",
+    "dialect": "postgres"
+  }
+}
