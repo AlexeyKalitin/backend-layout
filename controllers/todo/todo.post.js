@@ -1,6 +1,3 @@
-const readFile = require('../../readFile').readFile
-const writeFile = require('../../writeFile').writeFile
-const { v4: uuidv4 } = require('uuid')
 const db = require('../../models/index')
 
 module.exports.postTodo = async (req, res, next) => {
