@@ -1,12 +1,12 @@
 const db = require('../../models/index')
-const hashPassword = require ('../../passwordOp.js')
+const hashPassword = require ('../../passwordOp.js').hashPassword
 
 module.exports.signupController = async (req, res, next) => {
   await signupService(req, res, next)
 }
 
 const findOrCreate = payload =>
-  db.Todo.findOrCreate({
+  db.User.findOrCreate({
     where: { email: payload.email },
     defaults: { ...payload },
   })
@@ -36,7 +36,7 @@ const signupService = async (req, res, next) => {
   } catch (err) {
     return res.status(500).json({
       status: 'error',
-      message: 'something went wrong',
+      message: err.message,
     })
   }
 }

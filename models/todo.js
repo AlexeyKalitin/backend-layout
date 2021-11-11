@@ -14,26 +14,34 @@ module.exports = (sequelize, DataTypes) => {
 
   Todo.init(
     {      
-      uuid: {
-        type: DataTypes.UUID,
+      id: {
+        allowNull: false,
+        autoIncrement: true,
         primaryKey: true,
-        defaultValue: DataTypes.UUIDV4,
-        allowNull: false
+        type: DataTypes.INTEGER,
       },
-      name: {
+      password: {
         type: DataTypes.STRING,
         allowNull: false,
       },
-      isDone: {
+      verified: {
         type: DataTypes.BOOLEAN,
+        allowNull: false,
         defaultValue: false,
+      },
+      changedPassword: {
+        type: DataTypes.STRING,
+        allowNull: true,
+      },
+      email: {
+        type: DataTypes.STRING,
       },
       createdAt: {
         allowNull: false,
         type: DataTypes.DATE,
       },
       updatedAt: {
-        allowNull: true,
+        allowNull: false,
         type: DataTypes.DATE,
       },
     },
