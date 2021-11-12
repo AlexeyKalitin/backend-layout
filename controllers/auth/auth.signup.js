@@ -23,7 +23,7 @@ const signupService = async (req, res, next) => {
         message: 'user already exist',
       })
     }
-    delete account.dataValues.password
+    
     return res.status(201).json({
       status: 'success',
       message: 'user successfully created',

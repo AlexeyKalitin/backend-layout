@@ -1,6 +1,6 @@
 const bcrypt = require('bcryptjs')
 const jwt = require('jsonwebtoken')
-const accessTokenSecret = 'Myaccesstokensecret'
+const accessTokenSecret = require('../config.js').accessTokenSecret
 
 module.exports.authenticateJWT = (req, res, next) => {
   const authHeader = req.headers.authorization

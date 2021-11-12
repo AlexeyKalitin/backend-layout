@@ -2,12 +2,7 @@
 
 module.exports = {
   up: async (queryInterface, Sequelize) => {
-    return queryInterface.bulkInsert('Todo', [
-      {
-        uuid: '354678',
-        isDone: false,
-      },
-    ])
+  
   },
 
   down: async (queryInterface, Sequelize) => {
