@@ -2,13 +2,15 @@ const db = require('../../models/index')
 
 module.exports.deleteTodo = async (req, res, next) => {
   try {
-    const todo = await db.Todo.findOne({ where: { uuid: req.params.id } })
+    const todo = await db.Todos.findOne({
+      where: { uuid: req.params.id, userUUID:req.user.id},
+    })
     if (todo === null) {
       return res.status(404).json("todo isn't exist")
     }
 
-    await db.Todo.destroy({
-      where: { uuid: req.params.id },
+    await db.Todos.destroy({
+      where: { uuid: req.params. id,userUUID:req.user.id },
     })
 
     return res.status(200).json(todo)

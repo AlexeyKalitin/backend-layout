@@ -1,7 +1,7 @@
 'use strict'
 const { Model } = require('sequelize')
 module.exports = (sequelize, DataTypes) => {
-  class Todo extends Model {
+  class Todos extends Model {
     /**
      * Helper method for defining associations.
      * This method is not a part of Sequelize lifecycle.
@@ -12,29 +12,25 @@ module.exports = (sequelize, DataTypes) => {
     }
   }
 
-  Todo.init(
-    {      
-      id: {
-        allowNull: false,
-        autoIncrement: true,
+  Todos.init(
+    {
+      uuid: {
+        type: DataTypes.UUID,
         primaryKey: true,
-        type: DataTypes.INTEGER,
+        defaultValue: DataTypes.UUIDV4,
+        allowNull: false,
       },
-      password: {
+      userUUID: {
+        type: DataTypes.UUID,
+        allowNull: false,
+      },
+      name: {
         type: DataTypes.STRING,
         allowNull: false,
       },
-      verified: {
+      isDone: {
         type: DataTypes.BOOLEAN,
-        allowNull: false,
-        defaultValue: false,
-      },
-      changedPassword: {
-        type: DataTypes.STRING,
-        allowNull: true,
-      },
-      email: {
-        type: DataTypes.STRING,
+        default: false,
       },
       createdAt: {
         allowNull: false,
@@ -47,8 +43,8 @@ module.exports = (sequelize, DataTypes) => {
     },
     {
       sequelize,
-      modelName: 'Todo',
+      modelName: 'Todos',
     }
   )
-  return Todo
+  return Todos
 }

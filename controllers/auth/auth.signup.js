@@ -1,12 +1,8 @@
 const db = require('../../models/index')
-const hashPassword = require ('../../passwordOp.js').hashPassword
-
-module.exports.signupController = async (req, res, next) => {
-  await signupService(req, res, next)
-}
+const hashPassword = require('../../passwordOp.js').hashPassword
 
 const findOrCreate = payload =>
-  db.User.findOrCreate({
+  db.Users.findOrCreate({
     where: { email: payload.email },
     defaults: { ...payload },
   })
@@ -21,13 +17,13 @@ const signupService = async (req, res, next) => {
       password,
       email,
     })
-
     if (!created) {
       return res.status(400).json({
         status: 'fail',
         message: 'user already exist',
       })
     }
+    delete account.dataValues.password
     return res.status(201).json({
       status: 'success',
       message: 'user successfully created',
@@ -39,4 +35,8 @@ const signupService = async (req, res, next) => {
       message: err.message,
     })
   }
+}
+
+module.exports.signupController = async (req, res, next) => {
+  await signupService(req, res, next)
 }

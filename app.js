@@ -23,7 +23,7 @@ try {
   })
 
   recursive('routes/todo').forEach(file => app.use('/', require(`./${file}`)))
-  recursive('routes/user').forEach(file => app.use('/', require(`./${file}`)))
+  recursive('routes/auth').forEach(file => app.use('/', require(`./${file}`)))
 
   app.use((err, req, res, next) => {
     return res.status(err.status || 500).json({

@@ -1,11 +1,15 @@
 'use strict'
 module.exports = {
   up: async (queryInterface, Sequelize) => {
-    await queryInterface.createTable('Todo', {      
+    await queryInterface.createTable('Todos', {      
       uuid: {
         type: Sequelize.UUID,
         primaryKey: true,
         defaultValue: Sequelize.DataTypes.UUIDV4,
+        allowNull: false
+      },
+      userUUID:{
+        type: Sequelize.UUID,
         allowNull: false
       },
       name: {
@@ -28,6 +32,6 @@ module.exports = {
   },
 
   down: async (queryInterface, Sequelize) => {
-    await queryInterface.dropTable('Todo')
+    await queryInterface.dropTable('Todos')
   },
 }
