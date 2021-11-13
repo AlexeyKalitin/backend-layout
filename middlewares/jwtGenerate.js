@@ -11,16 +11,23 @@ const findUser = payload =>
   })
 
 module.exports.jwtAuth = async (req, res, next) => {
-  const { email, password } = req.body
-  const user = await findUser(email)
-  if (!user) {
-    if (!(await bcrypt.compare(password, user.password))) {
+  try {
+    const { email, password } = req.body
+    const user = await findUser(email)
+    if (!user) {
       return res.status(404).json({ message: "User isn't exist" })
     }
-  }
-  const accessToken = jwt.sign({ id: user.id }, accessTokenSecret)
+    if (!(await bcrypt.compare(password, user.password))) {
+      return res.status(404).json({ message: "Wrong password" })
+    }
+    const accessToken = jwt.sign({ id: user.id }, accessTokenSecret)
 
-  res.json({
-    accessToken,
-  })
+    res.json({
+      accessToken,
+    })
+  }
+  catch (e) {
+    return res.status(500).json({ message: e.message })
+
+  }
 }

@@ -22,7 +22,7 @@ try {
     res.setHeader('Access-Control-Allow-Credentials', true)
     next()
   })
-  recursive('routes/todo').forEach(file => {app.use('/',authenticateJWT, require(`./${file}`))})
+  recursive('routes/todo').forEach(file => {app.use('/', require(`./${file}`))})
   recursive('routes/auth').forEach(file => app.use('/', require(`./${file}`)))
 
   app.use((err, req, res, next) => {
