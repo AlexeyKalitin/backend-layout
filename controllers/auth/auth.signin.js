@@ -15,6 +15,9 @@ const comparePassword = (password, dbPassword) =>
 module.exports.signinController = async (req, res, next) => {
   try {
     const { email, password } = req.body
+    console.log(req.body)
+    if(!email && !password)
+    return res.status(400).json({ message: "email or pass empty" })
     const user = await findUser(email) 
     if (!user) {
       return res.status(404).json({ message: "User isn't exist" })
